@@ -7,10 +7,11 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , Mongoose = require('mongoose');
 
 var app = express();
-
+var db = Mongoose.createConnection('localhost', 'chinese-cheatsheets');
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
