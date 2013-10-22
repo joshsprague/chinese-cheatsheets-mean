@@ -3,13 +3,18 @@
  * GET home page.
  */
 
-exports.index = function(req, res){
-  res.render('index',
-    { title: 'Chinese Cheatsheets',
-    translations : [
-      { english: "cat", chinese: "猫"},
-      { english: "dog", chinese: "狗"},
-      { english: "horse", chinese: "马"}
-    ]
-  });
+exports.index = function(translations){
+  return function (req, res) {
+    res.render('index', {
+      title: 'Chinese Cheatsheets',
+      translations: translations
+    });
+  };
+};
+
+exports.addTranslation = function(translations) {
+  return function(req, res) {
+    translations.push(req.body);
+    res.json({ translations: translations });
+  };
 };

@@ -7,9 +7,12 @@ block head
 block content
   h1 Chinese Cheatsheets
   h2 Translate:
-  div
-    input(name="title")
-    input(type="submit", value="Translate")
+  form(novalidate, ng-submit="addNewTranslation()")
+    textarea( ng-model='newTranslation.english',
+      placeholder="Word to translate")
+    br
+    button.btn.btn-primary(type='submit') Translate
+
   div.container(ng-controller='translationController', ng-init='setTranslations( #{JSON.stringify(translations)} )')
     div.row(ng-repeat="translation in translations")
       div.span9
