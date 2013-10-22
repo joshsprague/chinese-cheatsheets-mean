@@ -1,8 +1,14 @@
 extends layout
 
+block head
+  link(rel='stylesheet', href='/javascripts/vendor/bootstrap-css/css/bootstrap.css')
+  script(type='text/javascript', src='/javascripts/controllers/translationController.js')
+
 block content
   h1 Chinese Cheatsheets
   h2 Translate:
   div
     input(name="title")
     input(type="submit", value="Translate")
+  div.container(ng-controller='translationController', ng-init='setTranslations( #{JSON.stringify(translations)} )')
+    div.row(ng-repeat="translation in translations")
